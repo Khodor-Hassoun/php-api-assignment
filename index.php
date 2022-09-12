@@ -5,6 +5,8 @@
     $b = $_POST['b'];
     $c = $_POST['c'];
     $password = $_POST['password'];
+    // $christmassDate = date_create('2022-12-25');
+    $christmassDate = date_create($_GET['q']);
 
     // API 1 RETURNS TRUE OR FALSE
     if($string == strrev($string)){
@@ -23,11 +25,16 @@
         $isStrong = false;
     }
 
+    //CHRISTMAS API
+    $currentDate = getdate();
+    $currentDate= date_create('now');
+    $dateDiff= date_diff($currentDate,$christmassDate);
 
     $results =[
         'isPalindrome' => $isPalindrome,
         'abc' => $abc,
-        'isStrong' => $isStrong
+        'isStrong' => $isStrong,
+        'Days-for-christmass' => $dateDiff
     ];
     echo json_encode($results);
 ?>
